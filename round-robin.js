@@ -1,18 +1,20 @@
-class Player{
-    constructor(name) {
-        this.name = name;
-    }
-}
+import {Player, populatePlayers } from './utils.js'
 
-function populatePlayers(numPlayers) {
-    players = []
-    for(let i = 1; i < numPlayers + 1; i++){
-        playername = "Player " + i;
-        player = new Player(playername)
-        players.push(player)
-    }
-    return players
-}
+// class Player{
+//     constructor(name) {
+//         this.name = name;
+//     }
+// }
+
+// function populatePlayers(numPlayers) {
+//     players = []
+//     for(let i = 1; i < numPlayers + 1; i++){
+//         playername = "Player " + i;
+//         player = new Player(playername)
+//         players.push(player)
+//     }
+//     return players
+// }
 
 
 class Match {
@@ -23,7 +25,7 @@ class Match {
 }
 
 
-class Tournament {
+export class robinTournament {
     constructor(players) {
         this.matches = [];
         this.createMatches(players);
@@ -45,8 +47,3 @@ class Tournament {
         return this.matches;
     }
 }
-
-players = populatePlayers(8)
-console.log(players)
-const tournament = new Tournament(players)
-console.log(tournament.getCurrentMatches())

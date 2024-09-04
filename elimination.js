@@ -1,19 +1,4 @@
-
-class Player {
-    constructor(name) {
-        this.name = name
-    }
-}
-
-function populatePlayers(numPlayers) {
-    players = []
-    for(let i = 1; i < numPlayers + 1; i++){
-        playername = "Player " + i;
-        player = new Player(playername)
-        players.push(player)
-    }
-    return players
-}
+import {populatePlayers, Player} from './utils.js'       
 
 
 class Match {
@@ -33,7 +18,7 @@ class Match {
     }
 }
 
-class Tournament {
+export class EliminTournament {
     //players array
     constructor(players){
         this.matchs = [];
@@ -74,10 +59,3 @@ class Tournament {
     }
 
 }
-
-players = populatePlayers(8)
-
-const tournament = new Tournament(players)
-tournament.simulate()
-console.log(tournament.results)
-
