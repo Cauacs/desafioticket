@@ -10,15 +10,22 @@ app.get('/', (req, res) => {
     res.send("Hello World")
 })
 
+// /elim?players=8
 app.get('/elim', (req,res) => {
-    const players = populatePlayers(8)
+    
+    const players = populatePlayers(parseInt(req.query.players))
     const elim = new EliminTournament(players)
     elim.simulate()
     res.send(JSON.stringify(elim.results,null, 2))
 })
 
-app
+// /robin?players=8
+app.get('/robin', (req, res) => {
+    const players = populatePlayers(parseInt(req.query.players))
+    const robin = new robinTournament(players)
+    res.send(JSON.stringify(robin.getCurrentMatches(), null, 2))
+})
 
 app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`)
+    console.log(`app listening on port ${port}`)
 })
