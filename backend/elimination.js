@@ -1,4 +1,3 @@
-import {populatePlayers, Player} from './utils.js'       
 
 
 class Match {

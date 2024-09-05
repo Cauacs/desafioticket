@@ -14,3 +14,6 @@ export class Player {
     }
 }
 
+export function isPowerOfTwo(number) { 
+    return (Math.log(number) / Math.log(2)) % 1 === 0;
+}

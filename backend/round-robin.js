@@ -1,21 +1,3 @@
-import {Player, populatePlayers } from './utils.js'
-
-// class Player{
-//     constructor(name) {
-//         this.name = name;
-//     }
-// }
-
-// function populatePlayers(numPlayers) {
-//     players = []
-//     for(let i = 1; i < numPlayers + 1; i++){
-//         playername = "Player " + i;
-//         player = new Player(playername)
-//         players.push(player)
-//     }
-//     return players
-// }
-
 
 class Match {
     constructor(leftCompetitor, rightCompetitor) {
