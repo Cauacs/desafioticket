@@ -15,5 +15,5 @@ Isso vai iniciar uma aplicação React no endereço `localhost:4000`
 
 ## Postgres(opcional)
 
-Para habilitar o banco de dados crie e preencha um arquivo `.env` com as instruções no arquivo `.env.example`
+Para habilitar o banco de dados crie e preencha um arquivo `.env`(no diretório `backend`) com as instruções no arquivo `.env.example`
 
