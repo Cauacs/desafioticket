@@ -6,7 +6,7 @@ const App = () => {
   const [format, setFormat] = useState("elim");
   const [showResult, setShowResult] = useState(false);
 
-  const maxPlayers = 16;
+  const maxPlayers = 32;
 
   const handleNumPlayersChange = (e) => {
     setNumberPlayers(e.target.value);
@@ -136,7 +136,7 @@ const TournamentResult = ({ players, format }) => {
         });
     };
     fetchData();
-  }, []);
+  }, [format, players]);
 
   if (format === "elim") {
     return (
