@@ -3,15 +3,21 @@ import { robinTournament } from "./round-robin.js";
 import { isPowerOfTwo, populatePlayers } from "./utils.js";
 import express from "express";
 import cors from "cors";
-import pg from "pg";
 import { connectDb, createTables } from "./database.js";
 
 const app = express();
 app.use(cors());
 const port = 4000;
-const client = await connectDb();
-await createTables(client);
-await client.end();
+
+//tentar conectar ao postgres
+try {
+  const client = await connectDb();
+  await createTables(client);
+} catch (e) {
+  console.log(
+    "Postgres não conectado, atualizar o .env(não é necessário para a aplicação funcionar)"
+  );
+}
 
 app.get("/", (req, res) => {
   res.send("Hello World");
