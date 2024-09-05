@@ -21,17 +21,19 @@ const App = () => {
   };
 
   const handleClick = () => {
-    if (format === "elim" && !isPowerOfTwo(numPlayers)){
-      alert("Number of players must be in the power of 2");
-      return
+    if (format === "elim" && !isPowerOfTwo(numPlayers)) {
+      alert(
+        "Número de jogadores de um torneio elimintório precisam ser uma potência de 2"
+      );
+      return;
     }
 
     setShowResult(true);
   };
   const handleBack = () => {
     setShowResult(false);
-    setFormat("elim")
-    setNumberPlayers(8)
+    setFormat("elim");
+    setNumberPlayers(8);
   };
 
   return (
@@ -39,38 +41,38 @@ const App = () => {
       {!showResult && (
         <div className="setupContainter">
           <div className="tournament-setup">
-            <h1>Setup Tournament</h1>
+            <h1>Criar torneio</h1>
 
-            {/* Number of Players Selection */}
+            {/* Seleão de quantidade de jogador*/}
             <div className="form-group">
-              <label htmlFor="numPlayers">Number of Players:</label>
+              <label htmlFor="numPlayers">Número de jogadores</label>
               <select
                 id="numPlayers"
                 value={numPlayers}
                 onChange={handleNumPlayersChange}
               >
                 {format === "elim" &&
-                  // Display only powers of 2 starting from 2 up to maxPlayers
+                  // Mostrar apenas números que são potência de dois pulando o 1
                   [...Array(Math.floor(Math.log2(maxPlayers)))].map((_, i) => {
-                    const powerOfTwo = 2 ** (i + 1); // Start from 2^1 = 2
+                    const powerOfTwo = 2 ** (i + 1); //pular o 1
                     return (
                       <option key={powerOfTwo} value={powerOfTwo}>
-                        {powerOfTwo} Players
+                        {powerOfTwo} Jogadores
                       </option>
                     );
                   })}
                 {format === "robin" &&
                   [...Array(maxPlayers)].map((_, i) => (
                     <option key={i + 2} value={i + 2}>
-                      {i + 2} Players
+                      {i + 2} Jogadores
                     </option>
                   ))}
               </select>
             </div>
 
-            {/* Tournament Format Selection */}
+            {/* Seleção de formato */}
             <div className="form-group">
-              <label>Tournament Format:</label>
+              <label>Formato do torneio:</label>
               <div>
                 <div className="labelContainer">
                   <label>
@@ -80,7 +82,7 @@ const App = () => {
                       checked={format === "elim"}
                       onChange={handleFormatChange}
                     />
-                    Single Elimination
+                    Chave eliminatória
                   </label>
                 </div>
                 <div>
@@ -91,15 +93,15 @@ const App = () => {
                       checked={format === "robin"}
                       onChange={handleFormatChange}
                     />
-                    Round-Robin
+                    Grupo único
                   </label>
                 </div>
               </div>
             </div>
 
-            {/* Submit Button */}
+            {/* Botão de gerar*/}
             <div className="buttonContainer">
-              <button onClick={handleClick}>Generate Tournament</button>
+              <button onClick={handleClick}>Gerar jogos</button>
             </div>
           </div>
         </div>
@@ -116,6 +118,8 @@ const App = () => {
 
 const TournamentResult = ({ players, format }) => {
   const [tournamentData, setTourmanetData] = useState([]);
+
+  // usando hook para buscar dados da api
   useEffect(() => {
     const fetchData = async () => {
       await fetch(`http://localhost:4000/${format}?players=${players}`)
@@ -143,7 +147,6 @@ const TournamentResult = ({ players, format }) => {
       </div>
     );
   }
-  console.log(tournamentData);
 
   return (
     <>
@@ -165,6 +168,7 @@ const Round = ({ matches }) => {
 const Match = ({ match }) => {
   return (
     <div
+      //ternário pra colocar o lado vencedor verde
       className={`match ${
         match.winner.name === match.left.name ? "winner-left" : "winner-right"
       }`}
@@ -195,17 +199,17 @@ const RoundRobinTable = ({ matches }) => {
         <table>
           <thead>
             <tr>
-              <th>Match</th>
-              <th>Player 1</th>
-              <th>Player 2</th>
+              <th>Partida</th>
+              <th>Jogador 1</th>
+              <th>Jogador 2</th>
             </tr>
           </thead>
           <tbody>
             {matches.map((match, index) => (
               <tr key={index}>
-                <td>{index + 1}</td> {/* Match number */}
-                <td>{match.left.name}</td> {/* Player 1 */}
-                <td>{match.right.name}</td> {/* Player 2 */}
+                <td>{index + 1}</td> {/* index da partida*/}
+                <td>{match.left.name}</td> {/* Jogador 1 */}
+                <td>{match.right.name}</td> {/* Jogador 2 */}
               </tr>
             ))}
           </tbody>
@@ -218,7 +222,7 @@ const RoundRobinTable = ({ matches }) => {
 const BackButton = ({ setState }) => {
   return (
     <div className="buttonContainer">
-      <button onClick={setState}>Back</button>
+      <button onClick={setState}>Voltar</button>
     </div>
   );
 };

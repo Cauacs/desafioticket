@@ -18,16 +18,16 @@ app.get("/", (req, res) => {
 });
 
 app.get("/elim", (req, res) => {
-  const players = populatePlayers(parseInt(req.query.players));
   //check for power of 2
-  if (!isPowerOfTwo(players)) {
-    res.status(400).json({
+  if (!isPowerOfTwo(parseInt(req.query.players))) {
+    return res.status(400).json({
       msg: "For elimination tournaments the number of players must be in the power of 2",
     });
   }
+  const players = populatePlayers(parseInt(req.query.players));
   const elim = new EliminTournament(players);
   elim.simulate();
-  res.json(elim.results);
+  return res.json(elim.results);
 });
 
 app.get("/robin", (req, res) => {
