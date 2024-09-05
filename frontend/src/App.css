@@ -1,30 +1,29 @@
-* {
-  box-sizing: border-box;
+html{
   margin: 0;
-  padding: 0;
+  height: 100%;
+  overflow: auto;
 }
-
 body {
   font-family: Arial, sans-serif;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
   background-color: #f4f4f9;
-  padding: 20px;
+  margin: 0;
+  height: 100%;
 }
 
 .bracket {
   display: flex;
   justify-content: space-between;
-  gap: 10px; /* Reduce the gap between rounds to save space */
+  gap: 5px; /* Reduce the gap between rounds to save space */
 }
 
 .round {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  gap: 10px; /* Reduce the gap between matches to fit more vertically */
+  gap: 5px; /* Reduce the gap between matches to fit more vertically */
 }
 
 .match {
@@ -41,7 +40,6 @@ body {
 }
 
 .team {
-  padding: 5px; /* Reduce padding inside teams */
   background-color: #e3e3e3;
   border-radius: 4px;
 }
@@ -52,7 +50,6 @@ body {
   font-weight: bold;
 }
 
-/* Optional styling for left and right match winners */
 .winner-left {
   border-left: 5px solid #4caf50;
 }
@@ -61,19 +58,113 @@ body {
   border-right: 5px solid #4caf50;
 }
 
-/* Adjust for larger screens with more rounds */
-@media (min-width: 1200px) {
-  .bracket {
-    gap: 20px;
-  }
-  .round {
-    gap: 15px;
-  }
-  .match {
-    min-width: 120px;
-    padding: 10px;
-  }
-  .team {
-    padding: 10px;
-  }
+.setupContainer {
+  display: flex;
+}
+
+
+.round-robin-table {
+  max-height: 800px;
+  overflow-x: auto;
+  overflow-y: auto;
+}
+
+
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 1.5rem; /* Adjust font size if needed */
+}
+
+
+
+thead {
+  background-color: #f4f4f9;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 4px 8px; /* Reduce padding */
+  text-align: center;
+  font-size: 0.875rem; /* Smaller font size for better fit */
+}
+
+tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+th {
+  background-color: #4caf50;
+  color: white;
+}
+
+
+
+/* Form style */
+
+h1 {
+  font-size: 2rem;
+  color: #333;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+label {
+  font-size: 1.1rem;
+  color: #555;
+  margin-bottom: 10px;
+}
+
+select, input[type="radio"] {
+  margin-right: 10px;
+}
+
+select {
+  padding: 8px;
+  font-size: 1rem;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  width: 200px;
+}
+
+input[type="radio"] {
+  margin: 5px 10px;
+}
+
+
+
+.buttonContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+button:focus {
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
 }
